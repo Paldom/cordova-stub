@@ -155,6 +155,17 @@
                 fail("Not supported!");
             }
         };
+        
+        // UUID - UNIQUE DEVICE ID PLUGIN
+        
+        window.plugins.uniqueDeviceID = {
+            
+            get: function (success, fail) {
+                success(window.device.uuid);
+            }
+            
+        };
+        
 
     }
 
