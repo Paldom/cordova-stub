@@ -10,7 +10,8 @@
 
         // deviceready        
 
-        var m_document_addEventListener = document.addEventListener;
+        var m_document_addEventListener = document.addEventListener,
+            m_window_open = window.open;
 
         document.addEventListener = function (evt, handler, capture) {
             var e = evt.toLowerCase();
@@ -164,6 +165,20 @@
                 success(window.device.uuid);
             }
             
+        };
+        
+        // IN APP BROWSER PLUGIN
+        
+        window.open = function (URL, name, specs, replace) {
+            m_window_open(URL, name, specs, replace);
+            return {
+                addEventListener: function () {},
+                removeEventListener: function () {},
+                show: function () {},
+                close: function () {},
+                executeScript: function () {},
+                insertCss: function () {}
+            };
         };
         
 
